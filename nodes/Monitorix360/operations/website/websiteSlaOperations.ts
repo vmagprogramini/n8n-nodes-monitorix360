@@ -59,6 +59,7 @@ export const websiteSlaOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['websiteSla'],

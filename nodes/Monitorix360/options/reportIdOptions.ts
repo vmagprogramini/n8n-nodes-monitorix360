@@ -8,8 +8,7 @@ export const reportIdOption: INodeProperties = {
 	type: 'string',
 	required: true,
 	default: '',
-	description:
-		'Report UUID from **Get Reports: Page Speed** or **Get Reports: Security** list endpoints.',
+	description: 'Report UUID from **Get Reports: Page Speed** or **Get Reports: Security** list endpoints',
 	displayOptions: {
 		show: {
 			resource: ['websiteReport'],

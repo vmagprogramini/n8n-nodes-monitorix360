@@ -22,9 +22,9 @@ export const serverOperationsNeedingServerId = [
 ];
 
 const serverGetAll: INodePropertyOptions = {
-	name: 'Get servers',
+	name: 'Get Servers',
 	action: 'List servers for a team',
-	description: 'Returns all servers monitored under the selected team.',
+	description: 'Returns all servers monitored under the selected team',
 	value: 'server_getAll',
 	routing: {
 		request: {
@@ -35,9 +35,9 @@ const serverGetAll: INodePropertyOptions = {
 };
 
 const serverGetById: INodePropertyOptions = {
-	name: 'Get server details',
+	name: 'Get Server Details',
 	action: 'Get server by ID',
-	description: 'Returns full details for a single server.',
+	description: 'Returns full details for a single server',
 	value: 'server_getById',
 	routing: {
 		request: {
@@ -50,7 +50,7 @@ const serverGetById: INodePropertyOptions = {
 const serverGetPorts: INodePropertyOptions = {
 	name: 'Get Ports',
 	action: 'List monitored ports for a server',
-	description: 'Returns paginated ports configured for the server.',
+	description: 'Returns paginated ports configured for the server',
 	value: 'server_getPorts',
 	routing: {
 		request: {
@@ -64,7 +64,7 @@ const serverGetPorts: INodePropertyOptions = {
 const serverGetMaintenanceWindows: INodePropertyOptions = {
 	name: 'Get Maintenance Windows',
 	action: 'List server maintenance windows',
-	description: 'Returns maintenance windows when monitoring jobs are paused.',
+	description: 'Returns maintenance windows when monitoring jobs are paused',
 	value: 'server_getMaintenanceWindows',
 	routing: {
 		request: {
@@ -77,7 +77,7 @@ const serverGetMaintenanceWindows: INodePropertyOptions = {
 const serverGetEvents: INodePropertyOptions = {
 	name: 'Get Events',
 	action: 'List server events',
-	description: 'Returns maintenance, certificate, and SLA-related events; optional date range.',
+	description: 'Returns maintenance, certificate, and SLA-related events; optional date range',
 	value: 'server_getEvents',
 	routing: {
 		request: {
@@ -91,7 +91,7 @@ const serverGetEvents: INodePropertyOptions = {
 const serverGetCertificates: INodePropertyOptions = {
 	name: 'Get Certificates',
 	action: 'List server certificate reports',
-	description: 'Returns paginated certificate data from the latest server reports.',
+	description: 'Returns paginated certificate data from the latest server reports',
 	value: 'server_getCertificates',
 	routing: {
 		request: {
@@ -105,7 +105,7 @@ const serverGetCertificates: INodePropertyOptions = {
 const serverGetUsers: INodePropertyOptions = {
 	name: 'Get Users',
 	action: 'List users from latest server report',
-	description: 'Returns paginated user accounts seen in the latest report.',
+	description: 'Returns paginated user accounts seen in the latest report',
 	value: 'server_getUsers',
 	routing: {
 		request: {
@@ -120,6 +120,7 @@ export const serverOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['server'],

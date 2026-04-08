@@ -12,7 +12,7 @@ import { websiteReportOperationsNeedingTeamId } from '../operations/website/webs
 import { websiteSlaOperationsNeedingTeamId } from '../operations/website/websiteSlaOperations';
 
 export const teamOption: INodeProperties = {
-	displayName: 'Team',
+	displayName: 'Team Name or ID',
 	name: 'teamId',
 	type: 'options',
 	required: true,
@@ -21,8 +21,7 @@ export const teamOption: INodeProperties = {
 		loadOptionsMethod: 'getTeams',
 		loadOptionsDependsOn: ['resource', 'operation'],
 	},
-	description:
-		'Choose a team from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+	description: 'Choose a team from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 	displayOptions: {
 		show: {
 			resource: [...teamResources, ...websiteResources, ...serverResources, ...notificationResources],

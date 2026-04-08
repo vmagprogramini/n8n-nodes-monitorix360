@@ -20,7 +20,7 @@ export const notificationsOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get All (Team)',
 		action: 'List team-wide alert occurrences',
-		description: 'Alert occurrences for the whole team; optional date range and limit.',
+		description: 'Alert occurrences for the whole team; optional date range and limit',
 		value: NotificationsGetAll,
 		routing: {
 			request: {
@@ -33,7 +33,7 @@ export const notificationsOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get By Server',
 		action: 'List server alert occurrences',
-		description: 'Alert occurrences scoped to one server; optional date range and limit.',
+		description: 'Alert occurrences scoped to one server; optional date range and limit',
 		value: NotificationsGetServers,
 		routing: {
 			request: {
@@ -46,7 +46,7 @@ export const notificationsOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get By Website',
 		action: 'List website alert occurrences',
-		description: 'Alert occurrences scoped to one website; optional date range and limit.',
+		description: 'Alert occurrences scoped to one website; optional date range and limit',
 		value: NotificationsGetWebsites,
 		routing: {
 			request: {
@@ -62,6 +62,7 @@ export const notificationsOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['notifications'],

@@ -25,7 +25,7 @@ export const serverReportOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get CPU Metrics',
 		action: 'List CPU metrics reports',
-		description: 'Paginated CPU metrics reports for the server (Gridify).',
+		description: 'Paginated CPU metrics reports for the server (Gridify)',
 		value: ServerReportGetCpuMetrics,
 		routing: {
 			request: {
@@ -38,7 +38,7 @@ export const serverReportOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get Disk Metrics',
 		action: 'List disk metrics reports',
-		description: 'Paginated disk metrics reports for the server (Gridify).',
+		description: 'Paginated disk metrics reports for the server (Gridify)',
 		value: ServerReportGetDiskMetrics,
 		routing: {
 			request: {
@@ -51,7 +51,7 @@ export const serverReportOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get Memory Metrics',
 		action: 'List memory metrics reports',
-		description: 'Paginated memory metrics reports for the server (Gridify).',
+		description: 'Paginated memory metrics reports for the server (Gridify)',
 		value: ServerReportGetMemoryMetrics,
 		routing: {
 			request: {
@@ -64,7 +64,7 @@ export const serverReportOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get Network Metrics',
 		action: 'List network metrics reports',
-		description: 'Paginated network metrics reports for the server (Gridify).',
+		description: 'Paginated network metrics reports for the server (Gridify)',
 		value: ServerReportGetNetworkMetrics,
 		routing: {
 			request: {
@@ -80,6 +80,7 @@ export const serverReportOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['serverReport'],

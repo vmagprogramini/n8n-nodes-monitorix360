@@ -13,7 +13,7 @@ export const serverSlaOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get SLA Configurations',
 		action: 'List server SLA configurations',
-		description: 'Paginated SLA configuration definitions for the server.',
+		description: 'Paginated SLA configuration definitions for the server',
 		value: ServerSlaGetConfigurations,
 		routing: {
 			request: {
@@ -26,7 +26,7 @@ export const serverSlaOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get SLA Breaches',
 		action: 'List server SLA breaches',
-		description: 'Paginated SLA breach records with optional date filters.',
+		description: 'Paginated SLA breach records with optional date filters',
 		value: ServerSlaGetBreaches,
 		routing: {
 			request: {
@@ -42,6 +42,7 @@ export const serverSlaOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['serverSla'],

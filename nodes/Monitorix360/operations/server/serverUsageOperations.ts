@@ -28,7 +28,7 @@ export const serverUsageOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get CPU Usage',
 		action: 'Get CPU usage time series',
-		description: 'CPU usage over the selected range; requires start/end dates, optional usage type and max data points.',
+		description: 'CPU usage over the selected range; requires start/end dates, optional usage type and max data points',
 		value: ServerUsageGetCpuUsage,
 		routing: {
 			request: {
@@ -41,7 +41,7 @@ export const serverUsageOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get Disk Usage',
 		action: 'Get disk I/O usage time series',
-		description: 'Disk read/write rates over the selected range; requires start/end dates.',
+		description: 'Disk read/write rates over the selected range; requires start/end dates',
 		value: ServerUsageGetDiskUsage,
 		routing: {
 			request: {
@@ -54,7 +54,7 @@ export const serverUsageOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get Disk Space',
 		action: 'Get current disk space snapshot',
-		description: 'Latest disk/partition usage and free space from the most recent report.',
+		description: 'Latest disk/partition usage and free space from the most recent report',
 		value: ServerUsageGetDiskSpace,
 		routing: {
 			request: {
@@ -66,7 +66,7 @@ export const serverUsageOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get Memory Usage',
 		action: 'Get memory usage time series',
-		description: 'Memory usage over the selected range; requires start/end dates.',
+		description: 'Memory usage over the selected range; requires start/end dates',
 		value: ServerUsageGetMemoryUsage,
 		routing: {
 			request: {
@@ -79,7 +79,7 @@ export const serverUsageOperations: INodePropertyOptions[] = [
 	{
 		name: 'Get Network Usage',
 		action: 'Get network usage time series',
-		description: 'Network throughput over the selected range; requires start/end dates.',
+		description: 'Network throughput over the selected range; requires start/end dates',
 		value: ServerUsageGetNetworkUsage,
 		routing: {
 			request: {
@@ -95,6 +95,7 @@ export const serverUsageOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['serverUsage'],

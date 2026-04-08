@@ -9,7 +9,7 @@ export const teamOperationsNeedingTeamId = ['team_getById', TeamGetMembers];
 const teamGetAll: INodePropertyOptions = {
 	name: 'Get Many',
 	action: 'List all teams for the current user',
-	description: 'Reads GET /users/profile and returns the teams array.',
+	description: 'Reads GET /users/profile and returns the teams array',
 	value: 'team_getAll',
 	routing: {
 		request: {
@@ -32,7 +32,7 @@ const teamGetAll: INodePropertyOptions = {
 const teamGetById: INodePropertyOptions = {
 	name: 'Get By ID',
 	action: 'Get team by ID',
-	description: 'Returns a single team record.',
+	description: 'Returns a single team record',
 	value: 'team_getById',
 	routing: {
 		request: {
@@ -45,7 +45,7 @@ const teamGetById: INodePropertyOptions = {
 const teamGetMembers: INodePropertyOptions = {
 	name: 'Get Members',
 	action: 'List team members',
-	description: 'Returns paginated members with roles for the team.',
+	description: 'Returns paginated members with roles for the team',
 	value: TeamGetMembers,
 	routing: {
 		request: {
@@ -60,6 +60,7 @@ export const teamOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['team'],

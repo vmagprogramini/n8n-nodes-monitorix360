@@ -7,7 +7,7 @@ import { websiteReportOperationsNeedingWebsiteId } from '../operations/website/w
 import { websiteSlaOperationsNeedingWebsiteId } from '../operations/website/websiteSlaOperations';
 
 export const websiteOption: INodeProperties = {
-	displayName: 'Website',
+	displayName: 'Website Name or ID',
 	name: 'websiteId',
 	type: 'options',
 	required: true,
@@ -16,8 +16,7 @@ export const websiteOption: INodeProperties = {
 		loadOptionsMethod: 'getWebsites',
 		loadOptionsDependsOn: ['resource', 'operation', 'teamId'],
 	},
-	description:
-		'Choose a website from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+	description: 'Choose a website from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 	displayOptions: {
 		show: {
 			resource: [...websiteResources, ...notificationResources],

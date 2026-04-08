@@ -8,7 +8,7 @@ import { serverSlaOperationsNeedingServerId } from '../operations/server/serverS
 import { serverUsageOperationsNeedingServerId } from '../operations/server/serverUsageOperations';
 
 export const serverOption: INodeProperties = {
-	displayName: 'Server',
+	displayName: 'Server Name or ID',
 	name: 'serverId',
 	type: 'options',
 	required: true,
@@ -17,8 +17,7 @@ export const serverOption: INodeProperties = {
 		loadOptionsMethod: 'getServers',
 		loadOptionsDependsOn: ['resource', 'operation', 'teamId'],
 	},
-	description:
-		'Choose a server from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+	description: 'Choose a server from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 	displayOptions: {
 		show: {
 			resource: [...serverResources, ...notificationResources],

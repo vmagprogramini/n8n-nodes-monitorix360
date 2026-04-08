@@ -30,9 +30,9 @@ export const websiteOperationsNeedingWebsiteId = [
  * Get all websites for a team (options)
  */
 const websiteGetAll: INodePropertyOptions = {
-	name: 'Get websites',
+	name: 'Get Websites',
 	action: 'List websites for a team',
-	description: 'Returns all websites monitored under the selected team.',
+	description: 'Returns all websites monitored under the selected team',
 	value: WebsiteGetAll,
 	routing: {
 		request: {
@@ -46,9 +46,9 @@ const websiteGetAll: INodePropertyOptions = {
  * Get a website by ID (options)
  */
 const websiteGetById: INodePropertyOptions = {
-	name: 'Get website details',
+	name: 'Get Website Details',
 	action: 'Get website by ID',
-	description: 'Returns full details for a single website.',
+	description: 'Returns full details for a single website',
 	value: WebsiteGetById,
 	routing: {
 		request: {
@@ -79,7 +79,7 @@ const websiteGetResponseTimes: INodePropertyOptions = {
 const websiteGetPorts: INodePropertyOptions = {
 	name: 'Get Ports',
 	action: 'List monitored ports for a website',
-	description: 'Returns paginated custom and detected ports for the website.',
+	description: 'Returns paginated custom and detected ports for the website',
 	value: WebsiteGetPorts,
 	routing: {
 		request: {
@@ -93,7 +93,7 @@ const websiteGetPorts: INodePropertyOptions = {
 const websiteGetMaintenanceWindows: INodePropertyOptions = {
 	name: 'Get Maintenance Windows',
 	action: 'List website maintenance windows',
-	description: 'Returns scheduled maintenance windows that exclude downtime from SLA.',
+	description: 'Returns scheduled maintenance windows that exclude downtime from SLA',
 	value: WebsiteGetMaintenanceWindows,
 	routing: {
 		request: {
@@ -106,7 +106,7 @@ const websiteGetMaintenanceWindows: INodePropertyOptions = {
 const websiteGetEvents: INodePropertyOptions = {
 	name: 'Get Events',
 	action: 'List website events',
-	description: 'Returns maintenance, certificate, and SLA-related events; optional date range.',
+	description: 'Returns maintenance, certificate, and SLA-related events; optional date range',
 	value: WebsiteGetEvents,
 	routing: {
 		request: {
@@ -124,6 +124,7 @@ export const websiteOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
 	type: 'options',
+	noDataExpression: true,
 	displayOptions: {
 		show: {
 			resource: ['website'],
