@@ -1,0 +1,45 @@
+import type { INodeProperties } from 'n8n-workflow';
+
+import { notificationResources, serverResources, teamResources, websiteResources } from '../helpers/resource';
+import { notificationsOperationsNeedingTeamId } from '../operations/notifications/notificationsOperations';
+import { serverReportOperationsNeedingTeamId } from '../operations/server/serverReportOperations';
+import { serverOperationsNeedingTeamId } from '../operations/server/serverOperations';
+import { serverSlaOperationsNeedingTeamId } from '../operations/server/serverSlaOperations';
+import { serverUsageOperationsNeedingTeamId } from '../operations/server/serverUsageOperations';
+import { teamOperationsNeedingTeamId } from '../operations/team/teamOperations';
+import { websiteOperationsNeedingTeamId } from '../operations/website/websiteOperations';
+import { websiteReportOperationsNeedingTeamId } from '../operations/website/websiteReportOperations';
+import { websiteSlaOperationsNeedingTeamId } from '../operations/website/websiteSlaOperations';
+
+export const teamOption: INodeProperties = {
+	displayName: 'Team',
+	name: 'teamId',
+	type: 'options',
+	required: true,
+	default: '',
+	typeOptions: {
+		loadOptionsMethod: 'getTeams',
+		loadOptionsDependsOn: ['resource', 'operation'],
+	},
+	description:
+		'Choose a team from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+	displayOptions: {
+		show: {
+			resource: [...teamResources, ...websiteResources, ...serverResources, ...notificationResources],
+			operation: [
+				...websiteOperationsNeedingTeamId,
+				...serverOperationsNeedingTeamId,
+				...teamOperationsNeedingTeamId,
+				...websiteSlaOperationsNeedingTeamId,
+				...websiteReportOperationsNeedingTeamId,
+				...serverReportOperationsNeedingTeamId,
+				...serverUsageOperationsNeedingTeamId,
+				...serverSlaOperationsNeedingTeamId,
+				...notificationsOperationsNeedingTeamId,
+			],
+		},
+		hide: {
+			operation: ['team_getAll'],
+		},
+	},
+};
