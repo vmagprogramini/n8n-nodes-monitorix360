@@ -66,7 +66,7 @@ export const teamOption: INodeProperties = {
 		loadOptionsDependsOn: ['resource', 'operation'],
 	},
 	description:
-		'Choose a team from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+		'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 	displayOptions: {
 		show: {
 			resource: teamScopedResources,

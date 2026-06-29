@@ -1,5 +1,6 @@
 import type {
 	IAuthenticateGeneric,
+	ICredentialTestRequest,
 	ICredentialType,
 	Icon,
 	INodeProperties,
@@ -44,6 +45,14 @@ export class Monitorix360PingApi implements ICredentialType {
 			headers: {
 				'X-Monitorix-Ping-Secret': '={{$credentials.pingSecret || undefined}}',
 			},
+		},
+	};
+
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '={{$credentials.baseUrl}}',
+			url: '/',
+			method: 'GET',
 		},
 	};
 }

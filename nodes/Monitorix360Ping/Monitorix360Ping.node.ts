@@ -111,6 +111,7 @@ export class Monitorix360Ping implements INodeType {
 				displayName: 'Ping Token',
 				name: 'pingToken',
 				type: 'string',
+				typeOptions: { password: true },
 				required: true,
 				default: '',
 				description: 'Monitored-task ping token (path segment in /ping/{token}/...)',

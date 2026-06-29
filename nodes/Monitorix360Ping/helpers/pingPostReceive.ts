@@ -12,9 +12,11 @@ const operationToStatus: Record<string, string> = {
 
 export async function pingPostReceive(
 	this: IExecuteSingleFunctions,
-	_items: INodeExecutionData[],
-	_responseData: IN8nHttpFullResponse,
+	items: INodeExecutionData[],
+	responseData: IN8nHttpFullResponse,
 ): Promise<INodeExecutionData[]> {
+	void items;
+	void responseData;
 	const operation = this.getNodeParameter('operation') as string;
 	const status = operationToStatus[operation] ?? operation;
 	return [{ json: { success: true, status } }];
