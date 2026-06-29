@@ -1,5 +1,6 @@
 import { INodeProperties, INodePropertyOptions } from "n8n-workflow";
-import { qsGridify, qsGridifyAndDates } from "../../helpers/routing";
+import { excelReportPostReceive } from "../../helpers/binaryFilePostReceive";
+import { qsGridify, qsGridifyAndDates, qsPageSpeedLast } from "../../helpers/routing";
 
 const WebsiteGetReportsAvailability = "website_getReportsAvailability";
 const WebsiteGetReportsCertificates = "website_getReportsCertificates";
@@ -8,6 +9,9 @@ const WebsiteGetReportsPageSpeed = "website_getReportsPageSpeed";
 const WebsiteGetReportsPageSpeedById = "website_getReportsPageSpeedById";
 const WebsiteGetReportsSecurity = "website_getReportsSecurity";
 const WebsiteGetReportsSecurityById = "website_getReportsSecurityById";
+const WebsiteGetPageSpeedLast = "website_getPageSpeedLast";
+const WebsiteGetSecurityReportLast = "website_getSecurityReportLast";
+const WebsiteExportSecurityExcel = "website_exportSecurityExcel";
 
 /**
  * Operations needing team ID
@@ -20,11 +24,11 @@ export const websiteReportOperationsNeedingTeamId = [
 	WebsiteGetReportsPageSpeedById,
 	WebsiteGetReportsSecurity,
 	WebsiteGetReportsSecurityById,
+	WebsiteGetPageSpeedLast,
+	WebsiteGetSecurityReportLast,
+	WebsiteExportSecurityExcel,
 ];
 
-/**
- * Operations needing website ID
- */
 export const websiteReportOperationsNeedingWebsiteId = [
 	WebsiteGetReportsAvailability,
 	WebsiteGetReportsCertificates,
@@ -33,12 +37,16 @@ export const websiteReportOperationsNeedingWebsiteId = [
 	WebsiteGetReportsPageSpeedById,
 	WebsiteGetReportsSecurity,
 	WebsiteGetReportsSecurityById,
+	WebsiteGetPageSpeedLast,
+	WebsiteGetSecurityReportLast,
+	WebsiteExportSecurityExcel,
 ];
 
-/** Page speed by ID and security by ID include reportId in the path. */
+/** Page speed by ID, security by ID, and security Excel export include reportId in the path. */
 export const websiteReportOperationsNeedingReportId = [
 	WebsiteGetReportsPageSpeedById,
 	WebsiteGetReportsSecurityById,
+	WebsiteExportSecurityExcel,
 ];
 
 /**
@@ -131,6 +139,48 @@ export const websiteReportOperations: INodePropertyOptions[] = [
 			request: {
 				method: 'GET',
 				url: '=/teams/{{$parameter.teamId}}/websites/{{$parameter.websiteId}}/reports/security/{{$parameter.reportId}}',
+			},
+		},
+	},
+	{
+		name: 'Get Last PageSpeed Report',
+		value: WebsiteGetPageSpeedLast,
+		action: 'Get last PageSpeed report for a website',
+		description: 'Returns the most recent PageSpeed report for the website',
+		routing: {
+			request: {
+				method: 'GET',
+				url: '=/teams/{{$parameter.teamId}}/websites/{{$parameter.websiteId}}/pagespeed/last',
+				qs: qsPageSpeedLast,
+			},
+		},
+	},
+	{
+		name: 'Get Last Security Report',
+		value: WebsiteGetSecurityReportLast,
+		action: 'Get last security report for a website',
+		description: 'Returns the most recent security report for the website',
+		routing: {
+			request: {
+				method: 'GET',
+				url: '=/teams/{{$parameter.teamId}}/websites/{{$parameter.websiteId}}/security-reports/last',
+			},
+		},
+	},
+	{
+		name: 'Export Security Report Excel',
+		value: WebsiteExportSecurityExcel,
+		action: 'Export security report to Excel',
+		description: 'Downloads a security report as an Excel file',
+		routing: {
+			request: {
+				method: 'GET',
+				url: '=/teams/{{$parameter.teamId}}/websites/{{$parameter.websiteId}}/reports/security/{{$parameter.reportId}}/export/excel',
+				returnFullResponse: true,
+				encoding: 'arraybuffer',
+			},
+			output: {
+				postReceive: [excelReportPostReceive],
 			},
 		},
 	},

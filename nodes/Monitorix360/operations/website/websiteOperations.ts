@@ -8,6 +8,7 @@ const WebsiteGetResponseTimes = 'website_getResponseTimes';
 const WebsiteGetPorts = 'website_getPorts';
 const WebsiteGetMaintenanceWindows = 'website_getMaintenanceWindows';
 const WebsiteGetEvents = 'website_getEvents';
+const WebsiteGetAlertPreferences = 'website_getAlertPreferences';
 
 export const websiteOperationsNeedingTeamId = [
 	WebsiteGetAll,
@@ -16,6 +17,7 @@ export const websiteOperationsNeedingTeamId = [
 	WebsiteGetPorts,
 	WebsiteGetMaintenanceWindows,
 	WebsiteGetEvents,
+	WebsiteGetAlertPreferences,
 ];
 
 export const websiteOperationsNeedingWebsiteId = [
@@ -24,6 +26,7 @@ export const websiteOperationsNeedingWebsiteId = [
 	WebsiteGetPorts,
 	WebsiteGetMaintenanceWindows,
 	WebsiteGetEvents,
+	WebsiteGetAlertPreferences,
 ];
 
 /**
@@ -117,6 +120,19 @@ const websiteGetEvents: INodePropertyOptions = {
 	},
 };
 
+const websiteGetAlertPreferences: INodePropertyOptions = {
+	name: 'Get Alert Preferences',
+	action: 'Get website alert preferences',
+	description: 'Returns alert preferences configured for the website',
+	value: WebsiteGetAlertPreferences,
+	routing: {
+		request: {
+			method: 'GET',
+			url: '=/teams/{{$parameter.teamId}}/websites/{{$parameter.websiteId}}/alert-preferences',
+		},
+	},
+};
+
 /**
  * Website operation for websites (node properties)
  */
@@ -138,6 +154,7 @@ export const websiteOperation: INodeProperties = {
 		websiteGetPorts,
 		websiteGetMaintenanceWindows,
 		websiteGetEvents,
+		websiteGetAlertPreferences,
 	],
 };
 
@@ -151,4 +168,5 @@ export const websiteOperationOptions: INodePropertyOptions[] = [
 	websiteGetPorts,
 	websiteGetMaintenanceWindows,
 	websiteGetEvents,
+	websiteGetAlertPreferences,
 ];

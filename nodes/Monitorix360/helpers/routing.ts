@@ -58,3 +58,63 @@ export const qsNotificationsScoped: IDataObject = {
 	...qsDateRange,
 	limit: emptyToUndefined('queryLimit'),
 };
+
+/** Website SLA report PDF: optional date range and language. */
+export const qsSlaReport: IDataObject = {
+	...qsDateRange,
+	lang: emptyToUndefined('queryLang'),
+};
+
+/** Monitored task execution reports: from / to query params. */
+export const qsFromToRange: IDataObject = {
+	from: dateTimeParamToIsoOrUndefined('queryStartDate'),
+	to: dateTimeParamToIsoOrUndefined('queryEndDate'),
+};
+
+/** SLA report PDF endpoints using start / end / lang query params. */
+export const qsSlaReportPdf: IDataObject = {
+	start: dateTimeParamToIsoOrUndefined('queryStartDate'),
+	end: dateTimeParamToIsoOrUndefined('queryEndDate'),
+	lang: emptyToUndefined('queryLang'),
+};
+
+export const qsMonitoredTaskEvents: IDataObject = {
+	...qsGridify,
+	...qsDateRange,
+	eventTypes: emptyToUndefined('queryEventTypes'),
+};
+
+export const qsExpiringSecretEvents: IDataObject = {
+	page: '={{ $parameter.queryPage }}',
+	pageSize: '={{ $parameter.queryPageSize }}',
+	startDate: dateTimeParamToIsoOrUndefined('queryStartDate'),
+	endDate: dateTimeParamToIsoOrUndefined('queryEndDate'),
+	eventTypes: emptyToUndefined('queryEventTypes'),
+};
+
+export const qsStatusHeatmap: IDataObject = {
+	days: emptyToUndefined('queryDays'),
+	bucket: emptyToUndefined('queryBucket'),
+};
+
+export const qsPageSpeedLast: IDataObject = {
+	strategy: emptyToUndefined('queryPageSpeedStrategy'),
+};
+
+export const qsOptionalTeamId: IDataObject = {
+	teamId: emptyToUndefined('optionalTeamId'),
+};
+
+export const qsWebhookServerFilter: IDataObject = {
+	serverId: emptyToUndefined('serverId'),
+};
+
+export const qsWebhookWebsiteFilter: IDataObject = {
+	websiteId: emptyToUndefined('websiteId'),
+};
+
+/** Monitored task execution report PDF: from / to / lang. */
+export const qsReportPdf: IDataObject = {
+	...qsFromToRange,
+	lang: emptyToUndefined('queryLang'),
+};
