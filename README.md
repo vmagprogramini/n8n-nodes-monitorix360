@@ -2,7 +2,7 @@
 
 [n8n](https://n8n.io/) community nodes for **Monitorix360** — manage teams, websites, servers, reports, SLA, usage, and notifications via the Monitorix integration API (same style of credentials as the Monitorix360 Zapier app).
 
-[Installation](#installation) · [Credentials](#credentials) · [Development](#development) · [Publishing](#publish-to-npm) · [License](#license)
+[Installation](#installation) · [Nodes](#nodes) · [Credentials](#credentials) · [Development](#development) · [Publishing](#publish-to-npm) · [License](#license)
 
 ## Installation
 
@@ -12,20 +12,72 @@ Install as a [community node](https://docs.n8n.io/integrations/community-nodes/i
 
 In the n8n UI: **Settings → Community nodes → Install** and enter the package name, or follow the CLI/docker instructions in the n8n docs for your deployment.
 
+## Nodes
+
+This package includes two community nodes:
+
+| Node | Purpose |
+| ---- | ------- |
+| **Monitorix 360** | Full integration API — teams, websites, servers, reports, SLA, alerts, webhooks, and more. |
+| **Monitorix 360 Ping** | Heartbeat pings for monitored tasks (`start`, `success`, `fail`). |
+
 ## Credentials
 
-Create **Monitorix360 Integration API** credentials in n8n:
+### Monitorix360 Integration API
 
-| Field     | Description |
-| --------- | ----------- |
+Used by the **Monitorix 360** node.
+
+| Field | Description |
+| ----- | ----------- |
 | **Base URL** | Root URL of your Monitorix API instance (no trailing slash). |
-| **API Key**  | Integration API key; request header is `Monitorix-Integration` followed by your key. |
+| **API Key** | Integration API key; sent as `Authorization: Monitorix-Integration {key}`. |
 
 Use **Test** to call `GET /users/profile` and verify the key and URL.
 
+### Monitorix360 Ping API
+
+Used by the **Monitorix 360 Ping** node.
+
+| Field | Description |
+| ----- | ----------- |
+| **Base URL** | Root URL of your Monitorix API instance (no trailing slash). |
+| **Ping Secret** | Optional value sent as `X-Monitorix-Ping-Secret` when the monitored task requires ping authentication. |
+
 ## Operations
 
-The **Monitorix 360** node exposes resources including Team, Website, Server, website/server reports and SLA, server usage, notifications, and Gridify-style queries. Configure **Resource** and **Operation** in the node panel.
+### Monitorix 360
+
+Configure **Resource** and **Operation** in the node panel. Available resources:
+
+- **Alert** — list and manage alerts
+- **Expiring Secret** — list expiring secrets
+- **Monitored Task** — list monitored tasks
+- **Notification** — list notifications
+- **Server** — CRUD and list servers
+- **Server Report** — generate and download server reports (PDF)
+- **Server SLA** — SLA configurations and breach reports
+- **Server Usage** — server usage metrics
+- **Team** — list teams
+- **Team Task** — list team tasks
+- **User Preference** — read user preferences
+- **Webhook** — list and manage webhooks
+- **Website** — CRUD and list websites
+- **Website Report** — generate and download website reports (PDF)
+- **Website SLA** — SLA configurations and breach reports
+
+Many list operations support **Gridify**-style query parameters (filter, sort, page) when enabled on the operation.
+
+### Monitorix 360 Ping
+
+Send heartbeat pings for a monitored task using its **Ping Token**:
+
+| Operation | Endpoint |
+| --------- | -------- |
+| **Start** | `POST` or `GET` `/ping/{token}/start` |
+| **Success** | `POST` or `GET` `/ping/{token}/success` |
+| **Fail** | `POST` or `GET` `/ping/{token}/fail` |
+
+`POST` is recommended. You can optionally attach a JSON object or array body (max 4 KB) on `POST` requests.
 
 ## Compatibility
 
