@@ -6,10 +6,10 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class Monitorix360IntegrationApi implements ICredentialType {
-	name = 'monitorix360IntegrationApi';
+export class Monitorix360PingApi implements ICredentialType {
+	name = 'monitorix360PingApi';
 
-	displayName = 'Monitorix360 Integration API';
+	displayName = 'Monitorix360 Ping API';
 
 	icon: Icon = {
 		light: 'file:../nodes/Monitorix360/monitorix360.svg',
@@ -26,17 +26,16 @@ export class Monitorix360IntegrationApi implements ICredentialType {
 			type: 'string',
 			default: 'https://api.dev.monitorix360.com',
 			placeholder: 'https://api.dev.monitorix360.com',
-			description:
-				'Root URL of the Api instance (no trailing slash).',
+			description: 'Root URL of the API instance (no trailing slash).',
 		},
 		{
-			displayName: 'API Key',
-			name: 'apiKey',
+			displayName: 'Ping Secret',
+			name: 'pingSecret',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
 			description:
-				'Integration API key sent as Authorization: Monitorix-Integration followed by the key value.',
+				'Optional secret sent as X-Monitorix-Ping-Secret when the monitored task requires ping authentication.',
 		},
 	];
 
@@ -44,7 +43,7 @@ export class Monitorix360IntegrationApi implements ICredentialType {
 		type: 'generic',
 		properties: {
 			headers: {
-				Authorization: '=Monitorix-Integration {{$credentials.apiKey}}',
+				'X-Monitorix-Ping-Secret': '={{$credentials.pingSecret || undefined}}',
 			},
 		},
 	};
@@ -52,7 +51,7 @@ export class Monitorix360IntegrationApi implements ICredentialType {
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials.baseUrl}}',
-			url: '/users/profile',
+			url: '/',
 			method: 'GET',
 		},
 	};

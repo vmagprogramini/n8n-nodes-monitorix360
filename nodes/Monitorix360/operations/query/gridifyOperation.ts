@@ -20,6 +20,17 @@ const opsGridifyPaging = [
 	'serverSla_getSlaConfigurations',
 	'serverSla_getSlaBreaches',
 	'team_getMembers',
+	'serverSla_getSlaBreachesByConfiguration',
+	'website_getSlaBreachesByConfiguration',
+	'monitoredTask_getAll',
+	'monitoredTask_getEvents',
+	'monitoredTask_getSlaBreaches',
+	'monitoredTask_getSlaBreachesByConfiguration',
+	'monitoredTask_getSlaConfigurations',
+	'expiringSecret_getAll',
+	'alert_getServerAlerts',
+	'alert_getWebsiteAlerts',
+	'teamTask_getAll',
 ];
 
 const opsDateRange = [
@@ -39,6 +50,26 @@ const opsDateRange = [
 	'notifications_getAll',
 	'notifications_getServers',
 	'notifications_getWebsites',
+	'team_getEvents',
+	'serverSla_getSlaBreachesByConfiguration',
+	'website_getSlaBreachesByConfiguration',
+	'website_getSlaReport',
+	'monitoredTask_getReport',
+	'monitoredTask_getTeamReport',
+	'monitoredTask_getEvents',
+	'monitoredTask_getSlaBreaches',
+	'monitoredTask_getSlaBreachesByConfiguration',
+	'monitoredTask_getSlaReport',
+	'monitoredTask_getReportPdf',
+	'serverSla_getSlaReport',
+	'expiringSecret_getEvents',
+];
+
+const opsSlaReportLang = [
+	'website_getSlaReport',
+	'monitoredTask_getReportPdf',
+	'monitoredTask_getSlaReport',
+	'serverSla_getSlaReport',
 ];
 
 const opsMaxDataPoints = [
@@ -57,6 +88,12 @@ const opsUsageType = [
 ];
 
 const opsNotificationLimit = ['notifications_getAll', 'notifications_getServers', 'notifications_getWebsites'];
+
+const opsStatusHeatmap = ['monitoredTask_getStatusHeatmap', 'monitoredTask_getTeamStatusHeatmap'];
+
+const opsEventTypes = ['monitoredTask_getEvents', 'expiringSecret_getEvents'];
+
+const opsPageSpeedStrategy = ['website_getPageSpeedLast'];
 
 /** Operation parameter values are already prefixed (e.g. website_getResponseTimes). Do not prefix again. */
 const queryPageProperty: INodeProperties = {
@@ -184,6 +221,78 @@ const queryLimitProperty: INodeProperties = {
 	},
 };
 
+const queryLangProperty: INodeProperties = {
+	displayName: 'Query: Language',
+	name: 'queryLang',
+	type: 'string',
+	default: '',
+	placeholder: 'en',
+	description:
+		'Report language code (e.g. en, fr, es). Optional; falls back to Accept-Language or user locale.',
+	displayOptions: {
+		show: {
+			operation: [...opsSlaReportLang],
+		},
+	},
+};
+
+const queryDaysProperty: INodeProperties = {
+	displayName: 'Query: Days',
+	name: 'queryDays',
+	type: 'number',
+	default: 30,
+	description: 'Number of days for the status heatmap (default 30)',
+	displayOptions: {
+		show: {
+			operation: [...opsStatusHeatmap],
+		},
+	},
+};
+
+const queryBucketProperty: INodeProperties = {
+	displayName: 'Query: Bucket',
+	name: 'queryBucket',
+	type: 'string',
+	default: 'day',
+	description: 'Heatmap bucket size (default day)',
+	displayOptions: {
+		show: {
+			operation: [...opsStatusHeatmap],
+		},
+	},
+};
+
+const queryEventTypesProperty: INodeProperties = {
+	displayName: 'Query: Event Types',
+	name: 'queryEventTypes',
+	type: 'string',
+	default: '',
+	description: 'Optional comma-separated event type filter',
+	displayOptions: {
+		show: {
+			operation: [...opsEventTypes],
+		},
+	},
+};
+
+const queryPageSpeedStrategyProperty: INodeProperties = {
+	displayName: 'Query: PageSpeed Strategy',
+	name: 'queryPageSpeedStrategy',
+	type: 'options',
+	noDataExpression: true,
+	options: [
+		{ name: 'Desktop', value: 'Desktop' },
+		{ name: 'Mobile', value: 'Mobile' },
+	],
+	default: 'Desktop',
+	description: 'PageSpeed measurement strategy',
+	displayOptions: {
+		show: {
+			operation: [...opsPageSpeedStrategy],
+		},
+	},
+};
+
 /** Gridify / date-range / usage / notification query fields (see helpers/routing.ts). */
 export const gridifyQueryProperties: INodeProperties[] = [
 	queryPageProperty,
@@ -195,4 +304,9 @@ export const gridifyQueryProperties: INodeProperties[] = [
 	queryMaxDataPointsProperty,
 	queryUsageTypeProperty,
 	queryLimitProperty,
+	queryLangProperty,
+	queryDaysProperty,
+	queryBucketProperty,
+	queryEventTypesProperty,
+	queryPageSpeedStrategyProperty,
 ];

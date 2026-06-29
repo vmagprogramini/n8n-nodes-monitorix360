@@ -1,10 +1,11 @@
 import type { INodeProperties, INodePropertyOptions } from 'n8n-workflow';
 
-import { qsGridify } from '../../helpers/routing';
+import { qsDateRange, qsGridify } from '../../helpers/routing';
 
 const TeamGetMembers = 'team_getMembers';
+const TeamGetEvents = 'team_getEvents';
 
-export const teamOperationsNeedingTeamId = ['team_getById', TeamGetMembers];
+export const teamOperationsNeedingTeamId = ['team_getById', TeamGetMembers, TeamGetEvents];
 
 const teamGetAll: INodePropertyOptions = {
 	name: 'Get Many',
@@ -56,6 +57,21 @@ const teamGetMembers: INodePropertyOptions = {
 	},
 };
 
+const teamGetEvents: INodePropertyOptions = {
+	name: 'Get Events',
+	action: 'List team events',
+	description:
+		'Returns team-wide events (maintenance, certificate expirations, integration API key expirations) within the date range',
+	value: TeamGetEvents,
+	routing: {
+		request: {
+			method: 'GET',
+			url: '=/teams/{{$parameter.teamId}}/events',
+			qs: qsDateRange,
+		},
+	},
+};
+
 export const teamOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
@@ -67,7 +83,12 @@ export const teamOperation: INodeProperties = {
 		},
 	},
 	default: 'team_getAll',
-	options: [teamGetAll, teamGetById, teamGetMembers],
+	options: [teamGetAll, teamGetById, teamGetMembers, teamGetEvents],
 };
 
-export const teamOperationOptions: INodePropertyOptions[] = [teamGetAll, teamGetById, teamGetMembers];
+export const teamOperationOptions: INodePropertyOptions[] = [
+	teamGetAll,
+	teamGetById,
+	teamGetMembers,
+	teamGetEvents,
+];

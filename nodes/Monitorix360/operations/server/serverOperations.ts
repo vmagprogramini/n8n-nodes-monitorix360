@@ -10,6 +10,8 @@ export const serverOperationsNeedingTeamId = [
 	'server_getEvents',
 	'server_getCertificates',
 	'server_getUsers',
+	'server_getAlertPreferences',
+	'server_getIdentityMismatches',
 ];
 
 export const serverOperationsNeedingServerId = [
@@ -19,6 +21,8 @@ export const serverOperationsNeedingServerId = [
 	'server_getEvents',
 	'server_getCertificates',
 	'server_getUsers',
+	'server_getAlertPreferences',
+	'server_getIdentityMismatches',
 ];
 
 const serverGetAll: INodePropertyOptions = {
@@ -116,6 +120,32 @@ const serverGetUsers: INodePropertyOptions = {
 	},
 };
 
+const serverGetAlertPreferences: INodePropertyOptions = {
+	name: 'Get Alert Preferences',
+	action: 'Get server alert preferences',
+	description: 'Returns alert preferences configured for the server',
+	value: 'server_getAlertPreferences',
+	routing: {
+		request: {
+			method: 'GET',
+			url: '=/teams/{{$parameter.teamId}}/servers/{{$parameter.serverId}}/alert-preferences',
+		},
+	},
+};
+
+const serverGetIdentityMismatches: INodePropertyOptions = {
+	name: 'Get Identity Mismatches',
+	action: 'List server identity mismatches',
+	description: 'Returns identity mismatch snapshots for the server',
+	value: 'server_getIdentityMismatches',
+	routing: {
+		request: {
+			method: 'GET',
+			url: '=/teams/{{$parameter.teamId}}/servers/{{$parameter.serverId}}/identity-mismatches',
+		},
+	},
+};
+
 export const serverOperation: INodeProperties = {
 	displayName: 'Operation',
 	name: 'operation',
@@ -135,6 +165,8 @@ export const serverOperation: INodeProperties = {
 		serverGetEvents,
 		serverGetCertificates,
 		serverGetUsers,
+		serverGetAlertPreferences,
+		serverGetIdentityMismatches,
 	],
 };
 
@@ -146,4 +178,6 @@ export const serverOperationOptions: INodePropertyOptions[] = [
 	serverGetEvents,
 	serverGetCertificates,
 	serverGetUsers,
+	serverGetAlertPreferences,
+	serverGetIdentityMismatches,
 ];

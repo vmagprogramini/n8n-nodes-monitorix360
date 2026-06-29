@@ -16,7 +16,7 @@
 		"url": "https://github.com/vmagprogramini/n8n-nodes-monitorix360.git"
 	},
 	"scripts": {
-		"build": "n8n-node build",
+		"build": "tsc && node scripts/copy-static-assets.mjs",
 		"build:watch": "tsc --watch",
 		"dev": "n8n-node dev",
 		"lint": "n8n-node lint",
@@ -31,10 +31,12 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"credentials": [
-			"dist/credentials/Monitorix360IntegrationApi.credentials.js"
+			"dist/credentials/Monitorix360IntegrationApi.credentials.js",
+			"dist/credentials/Monitorix360PingApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Monitorix360/Monitorix.node.js"
+			"dist/nodes/Monitorix360/Monitorix360.node.js",
+			"dist/nodes/Monitorix360Ping/Monitorix360Ping.node.js"
 		]
 	},
 	"devDependencies": {
