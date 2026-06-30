@@ -8,7 +8,7 @@
 
 Install as a [community node](https://docs.n8n.io/integrations/community-nodes/installation/) from npm:
 
-- Package name: `n8n-nodes-monitorix360`
+- Package name: `@admin_programini/n8n-nodes-monitorix360`
 
 In the n8n UI: **Settings → Community nodes → Install** and enter the package name, or follow the CLI/docker instructions in the n8n docs for your deployment.
 
