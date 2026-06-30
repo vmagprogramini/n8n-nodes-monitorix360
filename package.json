@@ -1,6 +1,6 @@
 {
-	"name": "n8n-nodes-monitorix360",
-	"version": "0.1.0",
+	"name": "@admin_programini/n8n-nodes-monitorix360",
+	"version": "0.1.1",
 	"description": "n8n community nodes for the Monitorix360 Web.Api",
 	"license": "MIT",
 	"homepage": "https://github.com/vmagprogramini/n8n-nodes-monitorix360#readme",
@@ -14,6 +14,10 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/vmagprogramini/n8n-nodes-monitorix360.git"
+	},
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
 	},
 	"scripts": {
 		"build": "tsc && node scripts/copy-static-assets.mjs",
@@ -40,7 +44,7 @@
 		]
 	},
 	"devDependencies": {
-		"@n8n/node-cli": "^0.23.1",
+		"@n8n/node-cli": "^0.37.1",
 		"eslint": "9.39.4",
 		"prettier": "3.8.1",
 		"release-it": "19.2.4",
