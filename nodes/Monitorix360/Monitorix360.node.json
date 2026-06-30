@@ -1,5 +1,5 @@
 {
-	"node": "n8n-nodes-monitorix360",
+	"node": "@admin_programini/n8n-nodes-monitorix360.monitorix360",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Productivity", "Development"],

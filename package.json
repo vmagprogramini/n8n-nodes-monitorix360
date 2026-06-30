@@ -1,6 +1,6 @@
 {
 	"name": "@admin_programini/n8n-nodes-monitorix360",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "n8n community nodes for the Monitorix360 Web.Api",
 	"license": "MIT",
 	"homepage": "https://github.com/vmagprogramini/n8n-nodes-monitorix360#readme",
@@ -39,8 +39,7 @@
 			"dist/credentials/Monitorix360PingApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Monitorix360/Monitorix360.node.js",
-			"dist/nodes/Monitorix360Ping/Monitorix360Ping.node.js"
+			"dist/nodes/Monitorix360/Monitorix360.node.js"
 		]
 	},
 	"devDependencies": {

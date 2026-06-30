@@ -14,18 +14,17 @@ In the n8n UI: **Settings → Community nodes → Install** and enter the packag
 
 ## Nodes
 
-This package includes two community nodes:
+This package includes one community node:
 
 | Node | Purpose |
 | ---- | ------- |
-| **Monitorix 360** | Full integration API — teams, websites, servers, reports, SLA, alerts, webhooks, and more. |
-| **Monitorix 360 Ping** | Heartbeat pings for monitored tasks (`start`, `success`, `fail`). |
+| **Monitorix 360** | Full integration API — teams, websites, servers, reports, SLA, alerts, webhooks, monitored-task heartbeat pings, and more. |
 
 ## Credentials
 
 ### Monitorix360 Integration API
 
-Used by the **Monitorix 360** node.
+Used when **Resource** is anything other than **Ping**.
 
 | Field | Description |
 | ----- | ----------- |
@@ -36,7 +35,7 @@ Use **Test** to call `GET /users/profile` and verify the key and URL.
 
 ### Monitorix360 Ping API
 
-Used by the **Monitorix 360 Ping** node.
+Used when **Resource** is **Ping**.
 
 | Field | Description |
 | ----- | ----------- |
@@ -45,14 +44,13 @@ Used by the **Monitorix 360 Ping** node.
 
 ## Operations
 
-### Monitorix 360
-
 Configure **Resource** and **Operation** in the node panel. Available resources:
 
 - **Alert** — list and manage alerts
 - **Expiring Secret** — list expiring secrets
 - **Monitored Task** — list monitored tasks
 - **Notification** — list notifications
+- **Ping** — heartbeat pings for monitored tasks (`start`, `success`, `fail`)
 - **Server** — CRUD and list servers
 - **Server Report** — generate and download server reports (PDF)
 - **Server SLA** — SLA configurations and breach reports
@@ -67,7 +65,7 @@ Configure **Resource** and **Operation** in the node panel. Available resources:
 
 Many list operations support **Gridify**-style query parameters (filter, sort, page) when enabled on the operation.
 
-### Monitorix 360 Ping
+### Ping resource
 
 Send heartbeat pings for a monitored task using its **Ping Token**:
 
@@ -78,6 +76,10 @@ Send heartbeat pings for a monitored task using its **Ping Token**:
 | **Fail** | `POST` or `GET` `/ping/{token}/fail` |
 
 `POST` is recommended. You can optionally attach a JSON object or array body (max 4 KB) on `POST` requests.
+
+## Migration from 0.1.2
+
+The standalone **Monitorix 360 Ping** node was removed in 0.1.3 to comply with n8n's one-regular-node-per-package rule. Update existing workflows to use **Monitorix 360** with **Resource** set to **Ping** and the same operation and parameters as before.
 
 ## Compatibility
 

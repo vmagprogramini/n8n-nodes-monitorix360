@@ -17,3 +17,5 @@ export const serverResources = ['server', 'serverSla', 'serverReport', 'serverUs
 export const teamResources = ['team'];
 
 export const notificationResources = ['notifications'];
+
+export const pingResources = ['ping'];

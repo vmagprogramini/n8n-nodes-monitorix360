@@ -35,16 +35,24 @@ import { taskIdOption } from './options/taskIdOptions';
 import { webhookIdOption } from './options/webhookIdOptions';
 import { webhookServerFilterOption } from './options/webhookServerFilterOptions';
 import { webhookWebsiteFilterOption } from './options/webhookWebsiteFilterOptions';
+import { pingOperation } from './operations/ping/pingOperations';
+import {
+	pingHttpMethodOption,
+	pingJsonBodyOption,
+	pingSendJsonBodyOption,
+	pingTokenOption,
+} from './options/pingOptions';
 
-const CREDENTIAL_TYPE = 'monitorix360IntegrationApi';
+const INTEGRATION_CREDENTIAL_TYPE = 'monitorix360IntegrationApi';
+const PING_CREDENTIAL_TYPE = 'monitorix360PingApi';
 
 async function getBaseUrlAndCredentialType(this: ILoadOptionsFunctions): Promise<{
 	baseUrl: string;
 	credentialType: string;
 }> {
-	const credentials = await this.getCredentials(CREDENTIAL_TYPE);
+	const credentials = await this.getCredentials(INTEGRATION_CREDENTIAL_TYPE);
 	const baseUrl = String(credentials.baseUrl ?? '').replace(/\/$/, '');
-	return { baseUrl, credentialType: CREDENTIAL_TYPE };
+	return { baseUrl, credentialType: INTEGRATION_CREDENTIAL_TYPE };
 }
 
 export class Monitorix360 implements INodeType {
@@ -149,10 +157,10 @@ export class Monitorix360 implements INodeType {
 			dark: 'file:monitorix360.dark.svg',
 		},
 		group: ['transform'],
-		version: 3,
+		version: 4,
 		subtitle: '={{ $parameter["operation"] + ": " + $parameter["resource"] }}',
 		description:
-			'Call the Monitorix Web.Api — websites, servers and teams (integration API key, same credentials as Monitorix360 Zapier app).',
+			'Call the Monitorix Web.Api — websites, servers, teams, and monitored-task heartbeat pings (integration API key or ping credentials).',
 		defaults: {
 			name: 'Monitorix 360',
 		},
@@ -161,8 +169,22 @@ export class Monitorix360 implements INodeType {
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
-				name: CREDENTIAL_TYPE,
+				name: INTEGRATION_CREDENTIAL_TYPE,
 				required: true,
+				displayOptions: {
+					hide: {
+						resource: ['ping'],
+					},
+				},
+			},
+			{
+				name: PING_CREDENTIAL_TYPE,
+				required: true,
+				displayOptions: {
+					show: {
+						resource: ['ping'],
+					},
+				},
 			},
 		],
 		requestDefaults: {
@@ -183,6 +205,7 @@ export class Monitorix360 implements INodeType {
 					{ name: 'Expiring Secret', value: 'expiringSecret' },
 					{ name: 'Monitored Task', value: 'monitoredTask' },
 					{ name: 'Notification', value: 'notifications' },
+					{ name: 'Ping', value: 'ping' },
 					{ name: 'Server', value: 'server' },
 					{ name: 'Server Report', value: 'serverReport' },
 					{ name: 'Server SLA', value: 'serverSla' },
@@ -212,6 +235,7 @@ export class Monitorix360 implements INodeType {
 			alertOperation,
 			teamTaskOperation,
 			webhookOperation,
+			pingOperation,
 			teamOption,
 			websiteOption,
 			serverOption,
@@ -224,6 +248,10 @@ export class Monitorix360 implements INodeType {
 			webhookIdOption,
 			webhookServerFilterOption,
 			webhookWebsiteFilterOption,
+			pingTokenOption,
+			pingHttpMethodOption,
+			pingSendJsonBodyOption,
+			pingJsonBodyOption,
 			...gridifyQueryProperties,
 		],
 	};
