@@ -1,6 +1,6 @@
 {
 	"name": "@admin_programini/n8n-nodes-monitorix360",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "n8n community nodes for the Monitorix360 Web.Api",
 	"license": "MIT",
 	"homepage": "https://github.com/vmagprogramini/n8n-nodes-monitorix360#readme",
@@ -9,7 +9,7 @@
 	],
 	"author": {
 		"name": "Programini",
-		"email": "contact@programini.com"
+		"email": "npm@programini.com"
 	},
 	"repository": {
 		"type": "git",
